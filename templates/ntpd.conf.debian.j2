@@ -1,0 +1,31 @@
+# {{ ansible_managed }}
+
+driftfile {{ ntpd_cfg_driftfile }}
+
+statsdir {{ ntpd_cfg_statsdir }}
+
+statistics loopstats peerstats clockstats
+filegen loopstats file loopstats type day enable
+filegen peerstats file peerstats type day enable
+filegen clockstats file clockstats type day enable
+
+{% if ntpd_cfg_serveroptions %}
+{% for ntpd_cfg_server in ntpd_cfg_servers %}
+{{ ntpd_cfg_server }} {{ ntpd_cfg_serveroptions }}
+{% endfor %}
+{% else %}
+{% for ntpd_cfg_server in ntpd_cfg_servers %}
+{{ ntpd_cfg_server }}
+{% endfor %}
+{% endif %}
+
+restrict -4 default kod notrap nomodify nopeer noquery limited
+restrict -6 default kod notrap nomodify nopeer noquery limited
+
+{% if ntpd_cfg_restricts %}
+{% for ntpd_cfg_restrict in ntpd_cfg_restricts %}
+restrict {{ ntpd_cfg_restrict }}
+{% endfor %}
+{% endif %}
+
+restrict source notrap nomodify noquery

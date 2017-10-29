@@ -1,0 +1,26 @@
+---
+services: docker
+
+env:
+  - distro: ubuntu1404
+  - distro: ubuntu1604
+  - distro: debian8
+  - distro: debian9
+
+script:
+  # Configure test script so we can run extra tests after playbook is run.
+  - export container_id=$(date +%s)
+  - export cleanup=false
+
+  # Download test shim.
+  - wget -O ${PWD}/tests/test.sh https://gist.githubusercontent.com/fahlke/4d2cb000461034b7ae261be2c615c2b2/raw/
+  - chmod +x ${PWD}/tests/test.sh
+
+  # Run tests.
+  - ${PWD}/tests/test.sh
+
+  # Ensure chronyc is installed.
+  - 'docker exec --tty ${container_id} env TERM=xterm which ntpd && which ntpq'
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/

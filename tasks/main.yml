@@ -1,0 +1,22 @@
+---
+- name: Install ntpd
+  package:
+    name: ntp
+    state: installed
+  notify: Enable and start ntpd
+  tags:
+    - common
+    - ntp
+    - time
+
+- name: Configure ntpd
+  template: src={{ item }} dest={{ ntpd_configfile }} owner=root group=root mode=0644
+  with_first_found:
+    - files:
+       - ntpd.conf.{{ ansible_distribution|lower }}.j2
+  notify: Restart ntpd
+  tags:
+    - common
+    - config
+    - ntp
+    - time

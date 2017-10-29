@@ -1,0 +1,26 @@
+---
+galaxy_info:
+  author: Alexander Fahlke <alexander.fahlke+ansible@gmail.com>
+  description: An Ansible role that installs ntpd
+
+  license: Apache
+
+  min_ansible_version: 2.0
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - trusty
+    - xenial
+  - name: Debian
+    versions:
+    - jessie
+    - stretch
+
+  galaxy_tags:
+    - ntp
+    - ntpd
+    - time
+    - system
+
+dependencies: []

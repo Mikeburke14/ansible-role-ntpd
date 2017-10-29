@@ -1,0 +1,11 @@
+---
+ntpd_configfile: '/etc/ntp.conf'
+
+ntpd_cfg_driftfile: '/var/lib/ntp/ntp.drift'
+ntpd_cfg_statsdir: '/var/log/ntpstats/'
+
+ntpd_cfg_servers: [ 'pool 0.europe.pool.ntp.org', 'pool 1.europe.pool.ntp.org', 'pool 2.europe.pool.ntp.org', 'pool 3.europe.pool.ntp.org' ]
+ntpd_cfg_serveroptions: 'iburst'
+
+
+ntpd_cfg_restricts: ['127.0.0.1', '::1']
