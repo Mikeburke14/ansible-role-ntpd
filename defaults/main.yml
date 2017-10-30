@@ -1,7 +1,12 @@
 ---
 ntpd_manage_config: 'true'
 
-ntpd_cfg_servers: [ 'pool 0.europe.pool.ntp.org', 'pool 1.europe.pool.ntp.org', 'pool 2.europe.pool.ntp.org', 'pool 3.europe.pool.ntp.org' ]
+ntpd_cfg_servers:
+  - 'pool 0.europe.pool.ntp.org'
+  - 'pool 1.europe.pool.ntp.org'
+  - 'pool 2.europe.pool.ntp.org'
+  - 'pool 3.europe.pool.ntp.org'
+
 ntpd_cfg_serveroptions: 'iburst'
 
 ntpd_cfg_restricts:
