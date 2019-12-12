@@ -5,7 +5,7 @@
 - name: Install ntpd
   package:
     name: ntp
-    state: installed
+    state: present
   notify: Enable and start ntpd
   tags:
     - common
